@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.get('/buzzwords', jsonParser, (req, res) => {
   res.json({
-    "buzzWords": wordArray
+    "buzzWords": wordArray,
   });
 });
 
@@ -78,7 +78,10 @@ app.route('/buzzWord')
 app.post('/reset' , (req,res) => {
   wordArray = [];
   points = 0;
-  console.log(wordArray + "you have" + points);
+  console.log(wordArray + "you have " + points);
+  res.json({
+    "success":true
+  });
 });
 
 
