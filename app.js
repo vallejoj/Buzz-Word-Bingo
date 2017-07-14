@@ -5,8 +5,7 @@ var wordArray = [];
 var points = 0;
 
 
-var urlencodedParser = bodyParser.json({
-  extended: false
+var jsonParser = bodyParser.json({
 });
 
 app.get('/', (req, res) => {
@@ -14,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/buzzwords', urlencodedParser, (req, res) => {
+app.get('/buzzwords', jsonParser, (req, res) => {
   res.json({
     "buzzWords": wordArray
   });
@@ -22,7 +21,7 @@ app.get('/buzzwords', urlencodedParser, (req, res) => {
 
 
 app.route('/buzzWord')
-  .post(urlencodedParser, (req, res) => {
+  .post(jsonParser, (req, res) => {
     if (wordArray.indexOf(req.body.buzzWord) !== -1) {
       res.json({
         "success":false
@@ -33,7 +32,6 @@ app.route('/buzzWord')
           "success":true
         });
         wordArray.push(req.body.buzzWord);
-
         console.log('this is true ' + wordArray);
       } else {
         res.json({
@@ -42,7 +40,7 @@ app.route('/buzzWord')
       }
     }
   })
-    .put(urlencodedParser, (req,res) => {
+    .put(jsonParser, (req,res) => {
     if (wordArray.indexOf(req.body.buzzWord) === -1){
       res.json({
         "success":false
@@ -61,7 +59,7 @@ app.route('/buzzWord')
         console.log(req.body);
     }
   })
-    .delete(urlencodedParser, (req,res) => {
+    .delete(jsonParser, (req,res) => {
   var findWordToDelete = wordArray.indexOf(req.body.buzzWord);
   console.log(findWordToDelete);
   if(wordArray.indexOf(req.body.buzzWord) !== -1){
@@ -76,6 +74,7 @@ app.route('/buzzWord')
     });
   }
 });
+
 app.post('/reset' , (req,res) => {
   wordArray = [];
   points = 0;
