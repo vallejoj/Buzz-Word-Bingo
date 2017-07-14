@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/vallejoj/Buzz-Word-Bingo#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3"
   },
   "jshintConfig": {
-  "esnext": true
-}
+    "esnext": true
+  },
+  "devDependencies": {}
 }
